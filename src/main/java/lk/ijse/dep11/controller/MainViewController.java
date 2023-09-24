@@ -85,6 +85,11 @@ public class MainViewController {
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {
+        employeesList.remove(tblEmployee.getSelectionModel().getSelectedItem());
+        tblEmployee.refresh();
+        txtName.clear();
+        txtContact.clear();
+        txtID.clear();
     }
 
     public void btnAddNewEmployeeOnAction(ActionEvent actionEvent) {

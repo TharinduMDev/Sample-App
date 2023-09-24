@@ -3,10 +3,7 @@ package lk.ijse.dep11.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Control;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
@@ -14,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import lk.ijse.dep11.tm.Employee;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainViewController {
     public AnchorPane root;
@@ -47,6 +45,43 @@ public class MainViewController {
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) {
+        if(!isDataValid()){
+            return;
+        }
+        Employee newEmployee = new Employee(txtID.getText(), txtName.getText(), txtContact.getText());
+        employeesList.add(newEmployee);
+        tblEmployee.refresh();
+        txtName.clear();
+        txtContact.clear();
+        btnAddNewEmployee.fire();
+    }
+    boolean isDataValid(){
+        if(!txtName.getText().matches("[A-Za-z ]+")){
+            txtName.requestFocus();
+            txtName.selectAll();
+            return false;
+        }
+        if(!txtContact.getText().matches("[+]94\\d{2}-\\d{7}")){
+            txtContact.requestFocus();
+            txtContact.selectAll();
+            return  false;
+        }
+        for (Employee employee: getEmployeeList()) {
+            if(employee.equals(tblEmployee.getSelectionModel().getSelectedItem())){
+                new Alert(Alert.AlertType.ERROR,"This Employee already Exist").show();
+                return false;
+            }
+            if ( employee.getContact().equals(txtContact.getText())){
+                new Alert(Alert.AlertType.ERROR,"Contact number already exist").show();
+                txtContact.requestFocus();
+                txtContact.selectAll();
+                return false;
+            }
+        }
+        return true;
+    }
+    public List<Employee> getEmployeeList(){
+        return tblEmployee.getItems();
     }
 
     public void btnDeleteOnAction(ActionEvent actionEvent) {

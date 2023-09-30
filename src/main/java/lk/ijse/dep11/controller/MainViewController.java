@@ -1,6 +1,8 @@
 package lk.ijse.dep11.controller;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -40,7 +42,6 @@ public class MainViewController {
         btnAddNewEmployee.requestFocus();
 
         employeesList = readEmployee();
-        //employeesList.add(new Employee("E-001","Shan","+9477-6589898"));
         employeesObservablList = FXCollections.observableList(employeesList);
         tblEmployee.setItems(employeesObservablList);
 
@@ -57,6 +58,27 @@ public class MainViewController {
                 saveEmployees();
             });
         });
+        txtSearch.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String old, String current) {
+                if (current == null) return;
+                filterText(current);
+            }
+        });
+    }
+
+    void filterText(String current){
+        ArrayList<Employee> filterEmployee = new ArrayList<>();
+        ObservableList<Employee> employees = FXCollections.observableList(filterEmployee);
+        tblEmployee.setItems(employeesObservablList);
+        for (Employee employee: tblEmployee.getItems()) {
+            if(employee.getId().toLowerCase().startsWith(current.toLowerCase()) || employee.getName().toLowerCase().startsWith(current.toLowerCase()) || employee.getContact().toLowerCase().startsWith(current.toLowerCase())){
+                filterEmployee.add(employee);
+                tblEmployee.setItems(employees);
+                tblEmployee.refresh();
+            }
+        }
+
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) {

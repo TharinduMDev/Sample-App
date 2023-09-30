@@ -39,8 +39,8 @@ public class MainViewController {
         }
         btnAddNewEmployee.requestFocus();
 
-        //employeesList = readEmployee();
-        employeesList.add(new Employee("E-001","Shan","+9477-6589898"));
+        employeesList = readEmployee();
+        //employeesList.add(new Employee("E-001","Shan","+9477-6589898"));
         employeesObservablList = FXCollections.observableList(employeesList);
         tblEmployee.setItems(employeesObservablList);
 
@@ -141,6 +141,30 @@ public class MainViewController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Employee> readEmployee(){
+        File file = new File("Employee_Details.dep");
+        if(!file.exists()) return new ArrayList<Employee>();
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            try {
+                ObjectInputStream oos = new ObjectInputStream(bis);
+                try {
+                    return (ArrayList<Employee>) oos.readObject();
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 
 }

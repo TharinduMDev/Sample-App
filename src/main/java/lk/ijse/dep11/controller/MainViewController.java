@@ -1,5 +1,6 @@
 package lk.ijse.dep11.controller;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.dep11.tm.Employee;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +44,19 @@ public class MainViewController {
         employeesObservablList = FXCollections.observableList(employeesList);
         tblEmployee.setItems(employeesObservablList);
 
+        tblEmployee.getSelectionModel().selectedItemProperty().addListener((o,old,current) ->{
+        txtID.setText(current.getId());
+        txtName.setText(current.getName());
+        txtContact.setText(current.getContact());
+        btnDelete.setDisable(false);
+        });
+
+        Platform.runLater(()->{
+            root.getScene().getWindow().setOnCloseRequest(e ->{
+                txtSearch.clear();
+                saveEmployees();
+            });
+        });
     }
 
     public void btnSaveOnAction(ActionEvent actionEvent) {
@@ -90,6 +105,7 @@ public class MainViewController {
         txtName.clear();
         txtContact.clear();
         txtID.clear();
+        btnDelete.setDisable(true);
     }
 
     public void btnAddNewEmployeeOnAction(ActionEvent actionEvent) {
@@ -111,6 +127,20 @@ public class MainViewController {
     }
 
     public void tblEmployeeOnDragDropped(DragEvent dragEvent) {
+    }
+    public  void saveEmployees(){
+        File file = new File("Employee_Details.dep");
+        try {
+            FileOutputStream fis = new FileOutputStream(file);
+            BufferedOutputStream bis = new BufferedOutputStream(fis);
+            ObjectOutputStream oos = new ObjectOutputStream(bis);
+            oos.writeObject(employeesList);
+            oos.close();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

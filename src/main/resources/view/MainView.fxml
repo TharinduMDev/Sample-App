@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="644.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep11.controller.MainViewController">
+<AnchorPane fx:id="root" prefHeight="658.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dep11.controller.MainViewController">
    <children>
-      <Label layoutX="221.0" layoutY="16.0" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: lightblue; -fx-alignment: center; -fx-background-radius: 20px;" text="Simple App" textFill="#0a0a0a" AnchorPane.leftAnchor="221.0" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="20.0">
+      <Label layoutX="20.0" layoutY="14.0" prefHeight="37.0" prefWidth="560.0" style="-fx-background-color: lightblue; -fx-alignment: center; -fx-background-radius: 10px;" text="Simple Employee Registation App" textFill="#0a0a0a" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>
@@ -38,7 +38,7 @@
       </TableView>
       <Button fx:id="btnSave" defaultButton="true" layoutX="201.0" layoutY="261.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="24.0" prefWidth="68.0" text="SAVE" AnchorPane.leftAnchor="220.0" />
       <Button fx:id="btnDelete" layoutX="308.0" layoutY="261.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" text="DELETE" textFill="RED" AnchorPane.rightAnchor="220.0" />
-      <Button fx:id="btnAddNewEmployee" layoutX="437.0" layoutY="49.0" mnemonicParsing="false" onAction="#btnAddNewEmployeeOnAction" prefHeight="25.0" prefWidth="138.0" style="-fx-background-color: lightgreen; -fx-background-radius: 30px;" text="+ NEW EMPLOYEE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="49.0">
+      <Button fx:id="btnAddNewEmployee" layoutX="442.0" layoutY="62.0" mnemonicParsing="false" onAction="#btnAddNewEmployeeOnAction" prefHeight="25.0" prefWidth="138.0" style="-fx-background-color: lightgreen; -fx-background-radius: 30px;" text="+ NEW EMPLOYEE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="62.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>

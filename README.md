@@ -1,4 +1,4 @@
-# Sample-App
+# Sample Employee Registrasion App
 
 ## Version 0.1.0
 

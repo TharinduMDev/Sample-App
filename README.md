@@ -1,3 +1,4 @@
+
 # Employee Registration App
 
 The Employee Registration App is a simple desktop application developed using JavaFX. It allows users to manage employee information, including adding, removing, updating, and searching for employees by various attributes such as name, ID, and contact number.
@@ -33,7 +34,6 @@ The Employee Registration App is a simple desktop application developed using Ja
 
    ```bash
    git clone https://github.com/TharinduMDev/Simple-Employee-Registration-App.git
-
 
 ## Version 0.1.0
 
